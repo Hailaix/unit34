@@ -28,12 +28,8 @@ class User {
   static async authenticate(username, password) {
     //get the hashed password stored in the db.
     const result = await db.query(`SELECT password FROM users WHERE username = $1`, [username]);
-    let hashpwd = result.rows[0];
-
-    if (hashpwd) {
-      return await bcrypt.compare(password, hashpwd.password);
-    }
-    throw new ExpressError("Invalid username/password", 400);
+    let user = result.rows[0];
+    return user && await bcrypt.compare(password, user.password);
   }
 
   /** Update last_login_at for user */
