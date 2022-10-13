@@ -5,7 +5,6 @@
     "default": {},
     "title": "Book Schema",
     "required": [
-        "isbn",
         "amazon_url",
         "author",
         "language",
@@ -15,14 +14,6 @@
         "year"
     ],
     "properties": {
-        "isbn": {
-            "type": "string",
-            "default": "",
-            "title": "The isbn Schema",
-            "examples": [
-                "0691161518"
-            ]
-        },
         "amazon_url": {
             "type": "string",
             "default": "",
@@ -82,7 +73,6 @@
     },
     "examples": [
         {
-            "isbn": "0691161518",
             "amazon_url": "http://a.co/eobPtX2",
             "author": "Matthew Lane",
             "language": "english",

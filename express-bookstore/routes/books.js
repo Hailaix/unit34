@@ -2,7 +2,11 @@ const express = require("express");
 const { validate } = require("jsonschema");
 const ExpressError = require("../../express-messagely/expressError");
 const Book = require("../models/book");
+
+//for creating new books
 const bookSchema = require("../schema/bookSchema.json");
+//for updating books (no isbn)
+const bookUSchema = require("../schema/bookUSchema.json");
 
 const router = new express.Router();
 
@@ -53,7 +57,7 @@ router.post("/", async function (req, res, next) {
 router.put("/:isbn", async function (req, res, next) {
   try {
     //validate the body
-    const validBody = validate(req.body, bookSchema);
+    const validBody = validate(req.body, bookUSchema);
     //if the body does not validate, thow an error
     if(! validBody.valid ){
       const errors = validBody.errors.map(e => e.stack);
